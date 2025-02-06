@@ -1,12 +1,39 @@
+/*selector de id*/
 #tituloprincipal{
     text-align: center;
     color: white;
     background-color: purple;
 }
+/*selector de clases*/
 .parrafoverde{
     color: green;
 }
 
 .parraforojo{
     color: Red;
+}
+/*Selector de elemento*/
+p, hi, div{
+    background-color: antiquewhite;
+    
+}
+/*selector descendente*/
+div p.parrafoverde {
+    font-size: 50px;
+}
+
+a{
+    font-size: 20px;
+}
+
+a:visited{
+    color: green;
+}
+a:hover{
+    color: red;
+    transition: 1s;
+}
+a:active{
+    color: white;
+    background-color: black
 }
