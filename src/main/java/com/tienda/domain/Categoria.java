@@ -3,6 +3,7 @@ import jakarta.persistence.*;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
 import lombok.Data;
 @Data // generar get and set
 @Entity
@@ -19,6 +20,10 @@ public class Categoria implements Serializable {
     private String rutaImagen;
     private boolean activo;
     
+    @OneToMany
+    @JoinColumn (name="idCategoria" , insertable = false, updatable = false)
+    private List<Producto> productos;
+ 
     public Categoria() {
         
     }
