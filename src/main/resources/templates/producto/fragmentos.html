@@ -278,6 +278,39 @@
                                     </div>
                                 </div>
                             </section>
+                            <section th:fragment="listadoAmpliado" id="listadoAmpliado">
+                                <div class="container">
+                                    <h1>Listado ampliado de productos</h1>
+                                    <div th:if="${productos != null and !productos.empty}">
+                                        <table class="table table-striped table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Descripción</th>
+                                                    <th>Detalle</th>
+                                                    <th>Precio</th>
+                                                    <th>Categoría</th>
+                                                    <th>Disponibilidad</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr th:each="producto : ${productos}">
+                                                    <td th:text="${producto.id}"></td>
+                                                    <td th:text="${producto.descripcion}"></td>
+                                                    <td th:text="${producto.detalle}"></td>
+                                                    <td th:text="${producto.precio}"></td>
+                                                    <td th:text="${producto.categoria}"></td>
+                                                    <td th:text="${producto.disponibilidad} ? 'Disponible' : 'No disponible'"></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div th:unless="${productos != null and !productos.empty}">
+                                        <p>No hay productos disponibles.</p>
+                                    </div>
+                                </div>
+                            </section>
+
                             </body>
                             </html>
 

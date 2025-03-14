@@ -25,25 +25,32 @@ public class ProductoController {
 
     @Autowired
     private ProductoService productoService;
-    
+
     @Autowired
     private CategoriaService categoriaService;
-    
+
     @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
 
-
-
     @RequestMapping("/listado")
-    public String listado (Model model) {
+    public String listado(Model model) {
         List<Producto> productos = productoService.getProductos(false);
-        
+       
+
         List<Categoria> listaCategoriasActivas = categoriaService.getCategorias(true);
 
         model.addAttribute("productos", productos);
         model.addAttribute("totalProductos", productos.size());
-        model.addAttribute("categorias",listaCategoriasActivas);
+        model.addAttribute("categorias", listaCategoriasActivas);
         return "/producto/listado";
+    }
+
+    @GetMapping("/listadoAmpliado")
+    public String listadoAmpliado(Model model) {
+        List<Producto> productos = productoService.getProductosAmpliados(true);
+
+        model.addAttribute("productos", productos);
+        return "/producto/listadoAmpliado";
     }
 
     @PostMapping("/guardar")
@@ -70,9 +77,9 @@ public class ProductoController {
     @GetMapping("/modificar/{idProducto}")
     public String productoModificar(Producto producto, Model model) {
         producto = productoService.getProducto(producto);
-         List<Categoria> listaCategoriasActivas = categoriaService.getCategorias(true);
+        List<Categoria> listaCategoriasActivas = categoriaService.getCategorias(true);
         model.addAttribute("producto", producto);
-         model.addAttribute("categorias",listaCategoriasActivas);
+        model.addAttribute("categorias", listaCategoriasActivas);
         return "/producto/modifica";
     }
 }
